@@ -5,6 +5,10 @@ all: build
 
 build:
 	@echo "Building..."
+	@if ! command -v templ > /dev/null; then \
+		echo "'templ' is not installed or not in PATH. Please install 'templ' before building."; \
+		exit 1; \
+	fi
 	@templ generate
 	@go build -o main cmd/api/main.go
 
